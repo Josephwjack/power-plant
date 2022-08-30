@@ -1,4 +1,4 @@
-import { plant1State, changeState, feed, blueFood, hydrate, superWater, koolaid, giveLight} from "../src/plant.js";
+import { plant1State, changeState, feed, blueFood, hydrate, superWater, koolaid, giveLight, nameChange, newName} from "../src/plant.js";
 
 describe ("Plant", () => {
 
@@ -30,6 +30,12 @@ describe ("Plant", () => {
   test('giveLight should increase light value by 5', () => {
     let plant1State = {soil: 0, water: 0, light:0 };
     expect(giveLight(plant1State)).toEqual({soil: 0, water: 0, light: 5});
-  })
-})
+  });
+
+  test('newName will implement a name property to a new plant', () => {
+    let plantWithName = {soil: 0, water: 0, light:0, name: ""}
+    let plantName1 = "Monstera";
+    expect(newName(plantName1)(plantWithName)).toEqual({soil: 0, water: 0, light: 0, name: "Monstera"});
+  });
+});
 

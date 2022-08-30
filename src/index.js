@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import { storeState, monsteraState, changeState , feed, blueFood} from "../src/plant.js";
+import { stateControl, feed, blueFood, hydrate, initialPlantState, stateChangeFunction, giveLight} from "./plant.js";
 
 $(document).ready(function() {
 
@@ -10,6 +10,7 @@ $(document).ready(function() {
   
     $('#feed').click(function() {
       const newState = stateControl(blueFood);
+      console.log(newState.soil);
       $('#soil-value').text(`Soil: ${newState.soil}`);
     });
   
@@ -19,12 +20,17 @@ $(document).ready(function() {
       // We just need to call stateControl() without arguments to see our current state.
       const currentState = stateControl();
       $('#soil-value').text(`Soil: ${currentState.soil}`);
-      $('#water-value').text(`Water: ${newState.water}`);
+      $('#water-value').text(`Water: ${currentState.water}`);
     });
 
     $('#hydrate').click(function() {
       const newState = stateControl(hydrate);
       $('#water-value').text(`Water: ${newState.water}`);
+    });
+
+    $('#give-light').click(function() {
+      const newState = stateControl(giveLight);
+      $('#light-value').text(`Light: ${newState.light}`);
     });
   
 
